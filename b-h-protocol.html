@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    RED.nodes.registerType('b-h-protocol',{
+        category: 'function',
+        color: '#DEB887',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"b-h-protocol";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="b-h-protocol">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="b-h-protocol">
+    <p>A node that parses incoming bavaria-hessia-telegrams to javascript objects, or the other way round.</p>
+    For incoming b-h-telegrams, payload must be a string or buffer.<br>
+    To create outgoing b-h-telegrams, payload must be an object with a "telegramtype" property set to 'DA','ST' or 'MD'; the node will send the telegram as a string.<br><br>
+    A description of the procotol can be found here: <a href="http://www.teledyne-api.com/manuals/02252C_TAPI_Hessen.pdf">http://www.teledyne-api.com/manuals/02252C_TAPI_Hessen.pdf</a><br>
+    <i>Note: In that document, the protocol is called "Hessen protocol" only.</i><br><br>
+    
+    Example telegrams (you have to replace "&lt;STX&gt;" with '\2' and "&lt;ETX&gt;" with '\3'): <br><br>
+    <ul>
+    <li>&lt;STX&gt;DA&lt;ETX&gt;04</li>
+    <li>&lt;STX&gt;ST007BA&lt;ETX&gt;32</li>
+    <li>&lt;STX&gt;MD03 300 +2000+02 40 01 321 000000 301 +3141+02 40 01 321 000000 302 +4711+00 40 00 321 000000 &lt;ETX&gt;29</li>
+    </ul>
+</script>
