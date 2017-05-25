@@ -158,11 +158,11 @@ module.exports = function(RED) {
                         telegram += ('0'+bhdata.components.length).slice(-2)+' ';
                         for (var i=0; i<bhdata.components.length; i++) {
                             var c = bhdata.components[i];
-                            telegram += toDec3(c.component)+' ';
-                            telegram += fmtFloat(c.value)+' ';
-                            telegram += toHex2(c.opsts)+' ';
-                            telegram += toHex2(c.errsts)+' ';
-                            telegram += toDec3(c.serial)+' ';
+                            telegram += toDec3(c.component||0)+' ';
+                            telegram += fmtFloat(c.value||0.0)+' ';
+                            telegram += toHex2(c.opsts||0)+' ';
+                            telegram += toHex2(c.errsts||0)+' ';
+                            telegram += toDec3(c.serial||0)+' ';
                             telegram += '000000 ';  // left free in the protocol specification
                         }
                         break;
