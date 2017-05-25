@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    RED.nodes.registerType('b-h-simple',{
+        category: 'function',
+        color: '#DEB887',
+        defaults: {
+            component: {value:1},
+            serial: {value:901},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"b-h-simple";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="b-h-simple">
+    <div class="form-row">
+        <label for="node-input-component"><i class="icon-tag"></i> Component</label>
+        <input type="number" id="node-input-component" min="0" max="999" placeholder="0-999">
+    </div>
+    <div class="form-row">
+        <label for="node-input-serial"><i class="icon-tag"></i> Serial</label>
+        <input type="number" id="node-input-serial" min="0" max="999" placeholder="0-999">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="b-h-simple">
+    <p>A node that goes hand-in-hand with the b-h-protocol node; depending on the incoming payload, it either creates an MD telegram object (to be consumed by a b-h-protocol node) for a simple numerical value, using the component and serial configured here; or extracts the value of the first component of an incoming MD telegram object and sends it as payload.</p>
+</script>
