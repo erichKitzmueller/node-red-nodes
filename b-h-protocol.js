@@ -77,8 +77,12 @@ module.exports = function(RED) {
                     node.error('payload does not contain STX and ETX where expected');
                     return;
                 }
+                var hexAsciiValue = function(n) {
+                  return (n<58)?n-48:n-55;
+                };
                 
-                var cs = (buf[buf.length-2]-48)*16 + (buf[buf.length-1]-48);
+                var cs = hexAsciiValue(buf[buf.length-2])*16 + hexAsciiValue(buf[buf.length-1]);
+                
                 if (cs != checksum(buf, buf.length-2)) {
                     node.error('invalid checksum, got '+toHex2(cs)+' but expected '+toHex2(checksum(buf, buf.length-2)));
                     return;
