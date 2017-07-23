@@ -7,7 +7,7 @@ module.exports = function(RED) {
         
         var timeHandler = function() {
             node.send({payload: config.payload || Date.now()});
-            timer = setTimeout(timeHandler, interval - (Date.now() %interval));  // setTimeout apparently has a considerable drift, so we use setTimeout to stay within the time grid as much as possible
+            timer = setTimeout(timeHandler, interval - (Date.now() %interval));  // setInterval apparently has a considerable drift, so we use setTimeout to stay within the time grid as much as possible
         };
         
         timer = setTimeout(timeHandler, interval - (Date.now() %interval));        
