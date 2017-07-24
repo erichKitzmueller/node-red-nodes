@@ -57,7 +57,7 @@ module.exports = function(RED) {
         };
         
         node.on('input', function(msg) {
-            var incoming = !(typeof(msg.payload) == 'object' && typeof(msg.payload.telegramtype == 'string'));            
+            var incoming = !(typeof(msg.payload) == 'object' && typeof(msg.payload.telegramtype) == 'string');
             
             if (incoming) {
                 // parse incoming b-h-telegram, must be string or Buffer
