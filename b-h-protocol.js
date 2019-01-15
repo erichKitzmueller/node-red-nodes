@@ -106,13 +106,13 @@ module.exports = function(RED) {
                          }
                          break;
                      case 'ST':
-                         if (telegram.length != 7) {
+                         if (telegram.length < 6) {
                              node.error('invalid ST telegram length');
                              return;
                          }
                        
                          bhdata.component = parseInt(telegram.substring(2,5));
-                         bhdata.word = parseInt(telegram.substring(5,7), 16);
+                         bhdata.command = telegram.substring(5);
                          break;
                      case 'MD':  
                          var n = parseInt(telegram.substring(2,4));
@@ -156,7 +156,7 @@ module.exports = function(RED) {
                         break;
                     case 'ST':
                         telegram += toDec3(bhdata.component);
-                        telegram += toHex2(bhdata.word);
+                        telegram += bhdata.command;
                         break;
                     case 'MD':
                         telegram += ('0'+bhdata.components.length).slice(-2)+' ';
